@@ -9,13 +9,13 @@ class Movie < ActiveRecord::Base
   #  movies with those ratings
   #  
   # if ratings_list is nil, retrieve ALL movies
-    if ratings_list.nil?
-      return self.all
-    end
+#     if ratings_list.nil?
+#       return self.all
+#     end
     
-    if ratings_list.length > 0
-      where(ratings: ratings_list)
-    end
+#     if ratings_list.length > 0
+#       where(ratings: ratings_list)
+#     end
     
     
   end
