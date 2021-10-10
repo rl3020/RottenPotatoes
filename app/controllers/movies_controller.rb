@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     @ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
     @movies = Movie.with_ratings(@ratings_to_show)
     @clicked = ''
-    @movies_title_css = 'text-primary hilite'
+    @movies_title_css = 'hilite text-primary '
     
     if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
