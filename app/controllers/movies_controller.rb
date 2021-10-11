@@ -9,20 +9,21 @@ class MoviesController < ApplicationController
   def index
     
     @all_ratings = Movie.all_ratings
-    @ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
+    #@ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
+    @ratings_to_show = []
     @movies = Movie.with_ratings(@ratings_to_show)
     
     @movies_title_css = 'text-primary'
     @release_date_css = 'text-primary'
     
     
-    
     if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
-      session[:to_sort] = @clicked
+      session[:to_sort] = params[:to_sort]
       
     elsif session.has_key?(:to_sort)
       @clicked = session[:to_sort]
+      
     else
       @clicked = ''
     end
@@ -56,8 +57,6 @@ class MoviesController < ApplicationController
       @movies = @movies.order(:release_date)      
     end
     
-   
-
     
   end
 
