@@ -15,30 +15,25 @@ class MoviesController < ApplicationController
     @movies_title_css = 'text-primary'
     @release_date_css = 'text-primary'
     
-    puts "Current Parameters: "
-    
-    my_ratings = session[:ratings]
-    my_sort = session[:to_sort]
     
     
-    puts params
-    
-    puts "session params:"
-    puts my_ratings
-    puts my_sort
-   
-    
-    if session.has_key?(:to_sort) && session.has_key?(:ratings)
-      #do stuff
-      @ratings_to_show = session[:ratings]
-      @clicked = session[:to_sort]
-      
-    elsif params.has_key?(:to_sort)
+    if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
+      session[:to_sort] = @clicked
       
+    elsif session.has_key(:to_sort)
+      @clicked = session[:to_sort]
     else
       @clicked = ''
+    end
+    
+
+    if params.has_key?(:ratings)
+      @ratings_to_show = params[:ratings]
+      session[:ratings] = @ratings_to_show
       
+    elsif session.has_key(:ratings)
+      @ratings_to_show = session[:ratings]
     end
     
     if @clicked == 'movie_title'
@@ -54,20 +49,14 @@ class MoviesController < ApplicationController
       @release_date_css = 'text-primary'
     end
     
+    
     if @clicked == 'movie_title'
       @movies = @movies.order(:title)
     elsif @clicked == 'release_date'
       @movies = @movies.order(:release_date)      
     end
     
-    if @clicked != ""
-      session[:to_sort] = @clicked
-      session[:ratings] = @ratings_to_show
-    else
-      session[:to_sort] = ""
-      session[:ratings] = @ratings_to_show
-    end
-    
+   
 
     
   end
