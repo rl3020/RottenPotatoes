@@ -20,10 +20,14 @@ class MoviesController < ApplicationController
     my_ratings = session[:ratings]
     my_sort = session[:to_sort]
     
+    
     puts params
+    
+    puts "session params:"
     puts my_ratings
     puts my_sort
    
+    
     if session.has_key?(:to_sort) && session.has_key?(:ratings)
       #do stuff
       @ratings_to_show = session[:ratings]
