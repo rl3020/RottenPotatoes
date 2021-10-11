@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     @movies_title_css = 'text-primary'
     @release_date_css = 'text-primary'
     
+    puts "Current Parameters: "
     puts params
     
     if params.has_key?(:to_sort)
