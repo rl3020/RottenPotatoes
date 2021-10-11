@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
     if redirect
       redirect_to movies_path :ratings => @ratings_to_show, :to_sort => @clicked
     else
-      @movies = Movie.with_ratings(@ratings_to_show).order(@to_sort)
+      @movies = Movie.with_ratings(@ratings_to_show)
     end
     
     
