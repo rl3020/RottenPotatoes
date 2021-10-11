@@ -12,10 +12,6 @@ class MoviesController < ApplicationController
     @ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
     @movies = Movie.with_ratings(@ratings_to_show)
     
-    if !params.has_key?('commit') && params['commit'] == 'Refresh'
-      @clicked = ''
-    end 
-    
     @movies_title_css = 'text-primary'
     @release_date_css = 'text-primary'
     
