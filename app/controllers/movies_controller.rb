@@ -18,15 +18,30 @@ class MoviesController < ApplicationController
     @release_date_css = 'text-primary'
     redirect = false
     
+    puts "ratings_to_show"
+    puts @ratings_to_show
+    
+    puts "movies"
+    puts @movies
+    
+    
     
     if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
       session[:to_sort] = params[:to_sort]
       
+      puts 'params has key :to_sort'
+      puts session[:to_sort]
+      
     elsif session.has_key?(:to_sort)
       @clicked = session[:to_sort]
       redirect = true
+      
+      puts 'session has key :to_sort'
+      puts @clicked
     else
+      puts 'no one has key :to_sort'
+      
       @clicked = ''
     end
     
@@ -35,9 +50,16 @@ class MoviesController < ApplicationController
       @ratings_to_show = params[:ratings]
       session[:ratings] = @ratings_to_show
       
+      puts 'params has :ratings'
+      puts params[:ratings]
+      
     elsif session.has_key?(:ratings)
       @ratings_to_show = session[:ratings]
       redirect = true
+      
+      puts 'sessions has :ratings'
+      puts sessions[:ratings]
+      
     end
     
     if @clicked == 'movie_title'
@@ -62,6 +84,11 @@ class MoviesController < ApplicationController
     end
     
     if redirect
+      puts 'redirecting to... '
+      puts movies_path
+      puts @ratings_to_show
+      puts @clicked
+      
       redirect_to movies_path :ratings => @ratings_to_show, :to_sort => @clicked
     end
     
