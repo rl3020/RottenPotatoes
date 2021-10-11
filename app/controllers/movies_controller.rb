@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
     
     puts "Current Parameters: "
     puts params
+    puts session
     
     if session.has_key?(:to_sort) && session.has_key?(:ratings)
       #do stuff
