@@ -12,7 +12,8 @@ class MoviesController < ApplicationController
     @ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
     @movies = Movie.with_ratings(@ratings_to_show)
     @clicked = ''
-    @movies_title_css = 'hilite text-primary'
+    @movies_title_css = 'text-primary'
+    @release_date_css = 'text-primary'
     
     if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
@@ -22,8 +23,15 @@ class MoviesController < ApplicationController
     
     if @clicked == 'movie_title'
       @movies_title_css = 'hilite text-primary'
+      @release_date_css = 'text-primary'
+      
+    elsif @clicked == 'release_date'
+      @release_date_css = 'hilite text-primary'
+      @movies_title_css = 'text-primary'
+      
     else
       @movies_title_css = 'text-primary'
+      @release_date_css = 'text-primary'
     end
     
   end
