@@ -9,7 +9,9 @@ class MoviesController < ApplicationController
   def index
     
     @all_ratings = Movie.all_ratings
+    
     @ratings_to_show = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
+    
     @movies = Movie.with_ratings(@ratings_to_show)
     
     @movies_title_css = 'text-primary'
@@ -55,12 +57,14 @@ class MoviesController < ApplicationController
     if @clicked == 'movie_title'
       @movies = @movies.order(:title)
     elsif @clicked == 'release_date'
-      @movies = @movies.order(:release_date)      
+      @movies = @movies.order(:release_date)   
+      
     end
     
     if redirect
       redirect_to movies_path :ratings => @ratings_to_show, :to_sort => @clicked
-    
+    else
+      @movies = Movie.with_ratings(@ratings_to_show).order(@to_sort)
     end
     
     
