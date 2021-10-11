@@ -15,6 +15,8 @@ class MoviesController < ApplicationController
     @movies_title_css = 'text-primary'
     @release_date_css = 'text-primary'
     
+    puts params
+    
     if params.has_key?(:to_sort)
       @clicked = params[:to_sort]
     else

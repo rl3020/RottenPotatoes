@@ -23,7 +23,7 @@
       </th>
       <th>Rating</th>
       <th class='<%= @release_date_css %>'> 
-        <%= link_to "Release Date", movies_path(:to_sort => "release_date"), id:'release_date_header' %> 
+        <%= link_to "Release Date", movies_path(:to_sort => "release_date", :ratings => Hash[@ratings_to_show.collect { |elem| [elem, "1"] } ]), id:'release_date_header' %> 
       </th>
       <th >More Info</th>
     </tr>
