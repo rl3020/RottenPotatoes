@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
       @clicked = params[:to_sort]
       session[:to_sort] = @clicked
       
-    elsif session.has_key(:to_sort)
+    elsif session.has_key?(:to_sort)
       @clicked = session[:to_sort]
     else
       @clicked = ''
@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
       @ratings_to_show = params[:ratings]
       session[:ratings] = @ratings_to_show
       
-    elsif session.has_key(:ratings)
+    elsif session.has_key?(:ratings)
       @ratings_to_show = session[:ratings]
     end
     
