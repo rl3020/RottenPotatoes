@@ -18,10 +18,17 @@ class MoviesController < ApplicationController
     puts "Current Parameters: "
     puts params
     
-    if params.has_key?(:to_sort)
+    if session.has_key?(:to_sort) && session.has_key?(:ratings)
+      #do stuff
+      @ratings_to_show = session[:ratings]
+      @clicked = session[:to_sort]
+      
+    elsif params.has_key?(:to_sort)
       @clicked = params[:to_sort]
+      
     else
       @clicked = ''
+      
     end
     
     if @clicked == 'movie_title'
@@ -42,6 +49,15 @@ class MoviesController < ApplicationController
     elsif @clicked == 'release_date'
       @movies = @movies.order(:release_date)      
     end
+    
+    if @clicked != ""
+      session[:to_sort] = @clicked
+      session[:ratings] = @ratings_to_show
+    else
+      session[:to_sort] = ""
+      session[:ratings] = @ratings_to_show
+    end
+    
 
     
   end
