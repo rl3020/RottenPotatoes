@@ -34,9 +34,9 @@ class MoviesController < ApplicationController
       @release_date_css = 'text-primary'
     end
     
-    if clicked == 'movie_title'
+    if @clicked == 'movie_title'
       @movies = @movies.order(:title)
-    elsif clicked == 'release_date'
+    elsif @clicked == 'release_date'
       @movies = @movies.order(:release_date)      
     end
      
