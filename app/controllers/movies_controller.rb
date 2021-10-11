@@ -31,6 +31,9 @@ class MoviesController < ApplicationController
       session[:to_sort] = params[:to_sort]
       
       puts 'params has key :to_sort'
+      puts params[:to_sort]
+      
+      puts 'storing params[to_sort ] in session'
       puts session[:to_sort]
       
     elsif session.has_key?(:to_sort)
@@ -52,13 +55,16 @@ class MoviesController < ApplicationController
       
       puts 'params has :ratings'
       puts params[:ratings]
+      puts 'after storing @ratings to show in session'
+      puts @ratings_to_show
+      
       
     elsif session.has_key?(:ratings)
       @ratings_to_show = session[:ratings]
       redirect = true
       
       puts 'sessions has :ratings'
-      puts sessions[:ratings]
+      puts session[:ratings]
       
     end
     
@@ -89,7 +95,7 @@ class MoviesController < ApplicationController
       puts @ratings_to_show
       puts @clicked
       
-      redirect_to movies_path :ratings => @ratings_to_show, :to_sort => @clicked
+      redirect_to movies_path(:ratings => @ratings_to_show, :to_sort => @clicked)
     end
     
     
